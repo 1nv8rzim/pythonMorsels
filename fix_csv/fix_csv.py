@@ -1,9 +1,10 @@
-from sys import argv
 import csv
+import sys
 
-with open(argv[1], 'r') as csv_old:
-    csv_reader = csv.reader(csv_old, delimiter='|')
-    with open(argv[2], 'w') as csv_new:
-        csv_writer = csv.writer(csv_new)
-        for line in csv_reader:
-            csv_writer.writerow(line)
+
+old, new = sys.argv[1:]
+
+with open(old, newline='') as old_csv:
+    reader = csv.reader(old_csv, delimiter='|')
+    with open(new, mode='wt', newline='') as new_csv:
+        csv.writer(new_csv).writerows(reader)
