@@ -1,3 +1,6 @@
+from argparse import ArgumentParser
+import csv
+
 parser = ArgumentParser()
 parser.add_argument('old_filename')
 parser.add_argument('new_filename')
