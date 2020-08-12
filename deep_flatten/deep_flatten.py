@@ -1,7 +1,7 @@
 def deep_flatten_helper(lst):
     return_val = []
     for i in lst:
-        if hasattr(i, '__iter__'):
+        if hasattr(i, '__iter__') and not isinstance(i, str):
             return_val += deep_flatten_helper(i)
         else:
             return_val += [i]
