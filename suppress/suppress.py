@@ -24,7 +24,9 @@ class suppress:
         return True
 
     def __call__(self, function):
-        try:
-            return_val = function()
-        except self.errors:
-            return return_val
+        def inside(*args, **kwargs):
+            try:
+                return function(*args, **kwargs)
+            except self.errors:
+                pass
+        return inside
