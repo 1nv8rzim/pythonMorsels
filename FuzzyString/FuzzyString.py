@@ -27,3 +27,12 @@ class FuzzyString:
 
     def __le__(self, other):
         return self.string.upper() <= other.upper()
+
+    def __contains__(self, other):
+        return other.upper() in self.string.upper()
+
+    def __add__(self, other):
+        if isinstance(other, str):
+            return FuzzyString(self.string + other)
+        else:
+            raise TypeError()
