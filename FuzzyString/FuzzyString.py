@@ -15,3 +15,9 @@ class FuzzyString(str):
 
     def __ne__(self, other):
         return not self == other
+
+    def __gt__(self, other):
+        return self.string.upper() > other.upper()
+
+    def __lt__(self, other):
+        return self.string.upper() < other.upper()
