@@ -1,4 +1,4 @@
-class FuzzyString(str):
+class FuzzyString:
     def __init__(self, string):
         self.string = string
 
@@ -21,3 +21,9 @@ class FuzzyString(str):
 
     def __lt__(self, other):
         return self.string.upper() < other.upper()
+
+    def __ge__(self, other):
+        return self.string.upper() >= other.upper()
+
+    def __le__(self, other):
+        return self.string.upper() <= other.upper()
