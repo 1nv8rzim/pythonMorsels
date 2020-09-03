@@ -1,3 +1,6 @@
+from unicodedata import normalize
+
+
 class FuzzyString:
     def __init__(self, string):
         self.string = string
@@ -5,7 +8,7 @@ class FuzzyString:
     def __eq__(self, other):
         if not isinstance(other, str):
             return False
-        return self.string.upper() == other.upper()
+        return normalize('NFKD', self.string.upper()) == normalize('NFKD', other.upper())
 
     def __str__(self):
         return self.string
@@ -17,19 +20,19 @@ class FuzzyString:
         return not self == other
 
     def __gt__(self, other):
-        return self.string.upper() > other.upper()
+        return normalize('NFKD', self.string.upper()) > normalize('NFKD', other.upper())
 
     def __lt__(self, other):
-        return self.string.upper() < other.upper()
+        return normalize('NFKD', self.string.upper()) < normalize('NFKD', other.upper())
 
     def __ge__(self, other):
-        return self.string.upper() >= other.upper()
+        return normalize('NFKD', self.string.upper()) >= normalize('NFKD', other.upper())
 
     def __le__(self, other):
-        return self.string.upper() <= other.upper()
+        return normalize('NFKD', self.string.upper()) <= normalize('NFKD', other.upper())
 
     def __contains__(self, other):
-        return other.upper() in self.string.upper()
+        return normalize('NFKD', other.upper()) in normalize('NFKD', self.string.upper())
 
     def __add__(self, other):
         if isinstance(other, str):
