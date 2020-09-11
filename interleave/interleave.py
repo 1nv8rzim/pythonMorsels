@@ -1,6 +1,4 @@
-def interleave(a, b):
-    return_val = []
-    for i, j in zip(a, b):
-        return_val.append(i)
-        return_val.append(j)
-    return return_val
+def interleave(*iterables):
+    for i in zip(*iterables):
+        for j in i:
+            yield j
