@@ -1,4 +1,9 @@
+from itertools import zip_longest
+
+
 def interleave(*iterables):
-    for i in zip(*iterables):
+    temp = object()
+    for i in zip_longest(*iterables, fillvalue=temp):
         for j in i:
-            yield j
+            if j is not temp:
+                yield j
