@@ -2,6 +2,9 @@ class Vector:
 
     __slots__ = ('x', 'y', 'z')
 
+    @immutable('x', 'y', 'z')
+    def __new_(self): pass
+
     def __init__(self, x, y, z):
         self.x = x
         self.y = y
