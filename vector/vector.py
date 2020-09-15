@@ -27,3 +27,21 @@ class Vector:
         if (isinstance(other, Vector)):
             return Vector(self.x - other.x, self.y - other.y, self.z - other.z)
         raise TypeError()
+
+    def __mul__(self, other):
+        if(isinstance(other, int) or isinstance(other, float)):
+            return Vector(self.x * other, self.y * other, self.z * other)
+        raise TypeError()
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __div__(self, other):
+        if (other is 0):
+            raise ZeroDivisionError()
+        if(isinstance(other, int) or isinstance(other, float)):
+            return Vector(self.x / other, self.y / other, self.z / other)
+        raise TypeError()
+
+    def __truediv__(self, other):
+        return self.__div__(other)
