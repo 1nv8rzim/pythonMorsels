@@ -2,13 +2,10 @@ class Vector:
 
     __slots__ = ('x', 'y', 'z')
 
-    @immutable('x', 'y', 'z')
-    def __new_(self): pass
-
     def __init__(self, x, y, z):
-        self.x = x
-        self.y = y
-        self.z = z
+        super().__setattr__('x', x)
+        super().__setattr__('y', y)
+        super().__setattr__('z', z)
 
     def __iter__(self):
         yield self.x
@@ -48,3 +45,6 @@ class Vector:
 
     def __truediv__(self, other):
         return self.__div__(other)
+
+    def __setattr__(self, name, value):
+        raise AttributeError("Vectors are immutable")
