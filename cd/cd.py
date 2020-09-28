@@ -21,3 +21,9 @@ class cd:
         os.chdir(self.original_dir)
         if self.sub_dir is None:
             self.temp_dir.cleanup()
+
+    def enter(self):
+        return self.__enter__()
+
+    def exit(self):
+        return self.__exit__(None, None, None)
