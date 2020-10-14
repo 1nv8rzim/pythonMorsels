@@ -10,3 +10,6 @@ class PermaDict(UserDict):
         if key in self:
             raise KeyError(f"'{key}' already in dictionary")
         super().__setitem__(key, value)
+
+    def force_set(self, key, value):
+        super().__setitem__(key, value)
