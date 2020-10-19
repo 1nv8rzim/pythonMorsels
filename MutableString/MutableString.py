@@ -43,3 +43,12 @@ class MutableString:
 
     def replace(self, key, value):
         return MutableString(str(self).replace(key, value))
+
+    def append(self, value):
+        self.string += value
+
+    def insert(self, element, value):
+        self.string.insert(element, value)
+
+    def pop(self, element=None):
+        return MutableString(self.string.pop(element)) if element is not None else MutableString(self.string.pop())
