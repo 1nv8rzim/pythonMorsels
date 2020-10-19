@@ -9,7 +9,7 @@ class MutableString:
         return "'" + str(self) + "'"
 
     def __getitem__(self, key):
-        return str().join(element for element in self.string[key])
+        return MutableString(str().join(element for element in self.string[key]))
 
     def __setitem__(self, key, value):
         self.string[key] = value
@@ -27,10 +27,10 @@ class MutableString:
         return MutableString(value + str(self))
 
     def lower(self):
-        return str(self).lower()
+        return MutableString(str(self).lower())
 
     def upper(self):
-        return str(self).upper()
+        return MutableString(str(self).upper())
 
     def __contains__(self, value):
         return value in str(self)
@@ -42,4 +42,4 @@ class MutableString:
         return value == str(self)
 
     def replace(self, key, value):
-        return str(self).replace(key, value)
+        return MutableString(str(self).replace(key, value))
