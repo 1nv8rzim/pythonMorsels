@@ -14,6 +14,9 @@ class MutableString:
     def __setitem__(self, key, value):
         self.string[key] = value
 
+    def __delitem__(self, key):
+        del self.string[key]
+
     def endswith(self, value):
         return str(self).endswith(value)
 
