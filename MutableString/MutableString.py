@@ -22,3 +22,9 @@ class MutableString:
 
     def lower(self):
         return str(self).lower()
+
+    def __in__(self, value):
+        return value in str(self)
+
+    def len(self):
+        return len(self.string)
