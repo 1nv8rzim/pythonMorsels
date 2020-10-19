@@ -7,3 +7,18 @@ class MutableString:
 
     def __repr__(self):
         return str(self)
+
+    def __getitem__(self, key):
+        return str().join(element for element in self.string[key])
+
+    def __setitem__(self, key, value):
+        self.string[key] = value
+
+    def endswith(self, value):
+        return self.string[-1] == value
+
+    def __add__(self, value):
+        return self.string + value
+
+    def lower(self):
+        return str(self).lower()
