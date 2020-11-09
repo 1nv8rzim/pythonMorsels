@@ -1,5 +1,6 @@
 from time import time
 from contextlib import ContextDecorator
+from statistics import mean, median
 
 
 class Timer(ContextDecorator):
@@ -23,3 +24,19 @@ class Timer(ContextDecorator):
         return_value = self.function(*args, **kwargs)
         self.runs.append(time() - self.time)
         return return_value
+
+    @property
+    def median(self):
+        return median(self.runs)
+
+    @property
+    def mean(self):
+        return mean(self.runs)
+
+    @property
+    def min(self):
+        return min(self.runs)
+
+    @property
+    def max(self):
+        return max(self.runs)
