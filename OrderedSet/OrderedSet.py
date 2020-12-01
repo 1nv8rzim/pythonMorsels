@@ -37,3 +37,18 @@ class OrderedSet:
         if element in self._set:
             self._set.discard(element)
             self._list.remove(element)
+
+    def __eq__(self, other):
+        if hasattr(other, '__iter__'):
+            for i, j in zip(self._list, other):
+                if i != j:
+                    return False
+        else:
+            return False
+        return True
+
+    def __str__(self):
+        return str(self._list)
+
+    def __repr__(self):
+        return repr(self._list)
