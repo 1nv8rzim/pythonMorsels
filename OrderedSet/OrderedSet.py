@@ -1,54 +1,30 @@
-class OrderedSet:
-    def __init__(self, *args):
-        self._list = list()
-        self._set = set()
-        if len(args) == 0:
-            pass
-        elif len(args) == 1:
-            if hasattr(args[0], '__iter__'):
-                for element in args[0]:
-                    if element not in self._set:
-                        self._set.add(element)
-                        self._list.append(element)
-            else:
-                self._set.add(args[0])
-                self._list.append(args[0])
-        else:
-            for element in args:
-                self._set.add(args[0])
-                self._list.append(args[0])
+from collections.abc import MutableSet, Sequence
 
-    def __contains__(self, element):
-        return element in self._set
 
-    def __len__(self):
-        return len(self._list)
+class OrderedSet(MutableSet):
+    def __init__(self, items):
+        self.items = dict.fromkeys(items, None)
 
     def __iter__(self):
-        for element in self._list:
-            yield element
+        for item in self.items:
+            yield item
 
-    def add(self, element):
-        if element not in self._set:
-            self._set.add(element)
-            self._list.append(element)
+    def __len__(self):
+        return len(self.items)
 
-    def discard(self, element):
-        if element in self._set:
-            self._set.discard(element)
-            self._list.remove(element)
+    def __contains__(self, item):
+        return item in self.items
+
+    def add(self, item):
+        self.items[item] = None
+
+    def discard(self, item):
+        self.items.pop(item, None)
 
     def __eq__(self, other):
-        if hasattr(other, '__iter__'):
-            for i, j in zip(self._list, other):
-                if i != j:
-                    return False
-        else:
-            return False
-        return True
+        if not isinstance(other, OrderedSet):
+            return self.items.keys() == other
+        return tuple(self.items.keys()) == tuple(other.items.keys())
 
-    def __str__(self):
-        return str(self._list)
-
-    def __repr__(self):
-        return repr(self._list)
+    def __getitem__(self, i):
+        return list(self.items.items())[i][0]
